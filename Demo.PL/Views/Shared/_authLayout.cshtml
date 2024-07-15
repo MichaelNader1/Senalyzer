@@ -1,0 +1,178 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - My Application</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        /* General styles */
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* end of general settings */
+
+        /* general colors */
+        :root {
+            --color-dark-text: #212529;
+            --color-light-text: #1e2022;
+            --background-primary: #4b4b4b;
+            --background-primary-light: #f8f9fd;
+            --shadow: rgba(192, 192, 192, 0.878);
+            --white: #ffffff;
+            --background-secondary: #eee;
+        }
+
+        /* end of general colors */
+
+        /* start of fonts */
+        body {
+            margin-top: 20px;
+            font-family: 'Changa', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Russo One', sans-serif;
+        }
+
+        .registration {
+            max-width: 350px;
+            background: var(--background-primary-light);
+            background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+            border-radius: 40px;
+            padding: 25px 35px;
+            border: 5px solid var(--white);
+            box-shadow: var(--shadow) 0px 30px 30px -20px;
+            margin: 20px;
+        }
+
+
+        .heading {
+            text-align: center;
+            font-weight: 900;
+            font-size: 30px;
+            color: #212529;
+        }
+
+        .registration .form {
+            margin-top: 20px;
+        }
+
+        .registration .input {
+            width: 100%;
+            background: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            box-shadow: #dadedf 0px 10px 10px -5px;
+            border-inline: 2px solid transparent;
+        }
+
+            .registration .input::-moz-placeholder {
+                color: rgb(170, 170, 170);
+            }
+
+            .registration .input::placeholder {
+                color: rgb(170, 170, 170);
+            }
+
+            .registration .input:focus {
+                outline: none;
+                border-inline: 2px solid #99a1a3;
+            }
+
+        .registration .forgot-password {
+            display: block;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .forgot-password a {
+            font-size: 11px;
+            color: #212529;
+            text-decoration: none;
+        }
+
+        .login-button {
+            display: block;
+            width: 100%;
+            font-weight: bold;
+            background: linear-gradient(45deg, rgb(40, 42, 43) 0%, rgb(80, 84, 85) 100%);
+            color: white;
+            padding-block: 15px;
+            margin: 10px auto;
+            border-radius: 20px;
+            box-shadow: rgba(209, 216, 219, 0.878) 0px 20px 10px -15px;
+            border: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .login-button:hover {
+                transform: scale(1.03);
+                box-shadow: rgba(202, 211, 215, 0.878) 0px 23px 10px -20px;
+            }
+
+            .login-button:active {
+                transform: scale(0.95);
+                box-shadow: rgba(211, 219, 223, 0.878) 0px 15px 10px -10px;
+            }
+
+        .social-account-container {
+            margin-top: 25px;
+        }
+
+            .social-account-container .title {
+                display: block;
+                text-align: center;
+                font-size: 10px;
+                color: rgb(170, 170, 170);
+            }
+
+            .social-account-container .social-accounts {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 5px;
+            }
+
+                .social-account-container .social-accounts .social-button {
+                    background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
+                    border: 5px solid white;
+                    padding: 5px;
+                    border-radius: 50%;
+                    width: 40px;
+                    aspect-ratio: 1;
+                    display: grid;
+                    place-content: center;
+                    box-shadow: rgba(127, 134, 138, 0.878) 0px 12px 10px -8px;
+                    transition: all 0.2s ease-in-out;
+                }
+    </style>
+
+    @RenderSection("ValidationSection", required: false)
+</head>
+<body>
+    @RenderBody()
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

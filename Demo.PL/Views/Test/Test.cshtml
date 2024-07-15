@@ -1,0 +1,22 @@
+﻿@model string
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis</title>
+</head>
+<body>
+    <h1>Sentiment Analysis</h1>
+    <form method="post" asp-action="Test">
+        <label for="review">Enter your review:</label><br />
+        <textarea id="review" name="review" rows="4" cols="50"></textarea><br />
+        <button type="submit">Submit</button>
+    </form>
+    <br />
+    @if (!string.IsNullOrEmpty(ViewBag.Result))
+    {
+        <h2>Result:</h2>
+        <p>@Html.Raw(ViewBag.Result)</p>
+    }
+</body>
+</html>

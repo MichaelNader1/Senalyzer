@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "Simulation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 mb-5 vh-100">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <h3 class="mb-5 text-center">E-Commerce plug-in Simulation</h3>
+            <div class="">
+                <div class="row p-5 bg-white border rounded">
+                    <div class="row p-2 bg-white border rounded max-width-container">
+                        <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image w-100" src="~/files/staticImages/1.jpg"></div>
+                        <div class="col-md-6 mt-1">
+                            <h5>Quant olap shirts</h5>
+                            <div class="d-flex flex-row">
+                                <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                            </div>
+                            <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                            <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                            <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                        </div>
+                        <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                            <div class="d-flex flex-row align-items-center">
+                                <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                            </div>
+                            <h6 class="text-success">Free shipping</h6>
+                            <div class="d-flex flex-column mt-4"><button class="btn btn-dark btn-sm" type="button">Details</button><button class="btn btn-outline-dark btn-sm mt-2" type="button">Add to wishlist</button></div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Section -->
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <h4>Customer Reviews</h4>
+                            <div class="demo-reviews">
+                                <p class="text-success">I'm very satisfied with my purchase. Highly recommend!</p>
+                                <p class="text-success">Great product! Excellent quality and design.</p>
+                                <p class="text-danger">Poor quality. The shirt started to fade after a few washes.</p>
+                                <p class="text-success">Fast shipping and good customer service.</p>
+                                <p class="text-danger">Not as described. The actual product looks different from the picture.</p>
+                            </div>
+                            <div id="reviews-container"></div>
+                            <div class="mt-3">
+                                <div class="form-group">
+                                    <label class="fw-bolder" for="reviewText">Write your review:</label>
+                                    <textarea class="form-control textarea" id="reviewText" rows="3"></textarea>
+                                </div>
+                                <button class="btn btn-dark mt-2" id="submitReview">Submit Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .textarea {
+        margin: auto;
+        width: 600px;
+        height: 150px;
+        border-radius: 7px;
+        border: 0;
+        outline: auto grey;
+        padding: 20px;
+        font-size: 16px;
+        resize: none;
+        overflow: hidden;
+    }
+
+    .max-width-container {
+        max-width: 830px; /* Adjust the max-width as needed */
+        margin: 0 auto; /* Center the container horizontally */
+    }
+
+    .product-image {
+        max-width: 100%;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const reviewsContainer = document.getElementById("reviews-container");
+        const reviewTextElement = document.getElementById("reviewText");
+        const submitReviewButton = document.getElementById("submitReview");
+
+        // Array to store reviews
+        const reviewsArray = [];
+
+        // Function to render reviews in the HTML
+        function renderReviews() {
+            reviewsContainer.innerHTML = "";
+            reviewsArray.forEach((review) => {
+                const reviewElement = document.createElement("div");
+                reviewElement.classList.add("mb-3");
+                reviewElement.innerHTML = `<p class="${review.class}">${review.text}</p>`;
+                reviewsContainer.appendChild(reviewElement);
+            });
+        }
+
+        // Event listener for the "Submit Review" button
+        submitReviewButton.addEventListener("click", function () {
+            const newReview = reviewTextElement.value.trim();
+            if (newReview !== "") {
+                fetch(`https://ml-api-final-1.onrender.com/predict/${encodeURIComponent(newReview)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let reviewClass = "text-danger";
+                        if (data["prediction is"] === 1) {
+                            reviewClass = "text-success";
+                        }
+                        reviewsArray.push({ text: newReview, class: reviewClass });
+                        renderReviews();
+                        // Clear the textarea after submitting the review
+                        reviewTextElement.value = "";
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        });
+    });
+</script>

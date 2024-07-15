@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "CheckYourInbox";
+    Layout = "~/Views/Shared/_authLayout.cshtml";
+}
+
+<div class="container registration m-auto mt-5">
+
+    <div class="heading mb-3">Congrats!</div>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" asp-validation-summary="All"> </div>
+    }
+    <p>Your Reset Password Link has been sent to your email please check your inbox from
+        <a class="text-dark font-weight-bolder" href="https://mail.google.com/mail/u/0/#inbox" target="_blank">Here</a> </p>
+
+
+
+</div>

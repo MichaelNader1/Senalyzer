@@ -1,0 +1,121 @@
+﻿@model SignUpViewModel
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_authLayout.cshtml";
+}
+
+<div class="container d-flex align-items-center justify-content-center vh-100 flex-column">
+    <div class="d-flex align-items-center justify-content-center mb-4 text-container mt-5">
+        <img class="Logo mr-1 grayscale" src="~/sentimentanalyzericon/emotions_423327.png" />
+        <div class="sa">
+            <h1 class="text-center font-weight-bolder line-1 ">Senalyzer</h1>
+            <p class="text-center font-weight-bolder line-2">Sentiment Analyzer</p>
+        </div>
+    </div>
+    <div class="row w-100">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <img src="~/SentimentAnalyzerIcon/regist2.png" class="img-fluid p-5" alt="Sign Up Image">
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="registration-container">
+                <div class="heading">Sign Up</div>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger" asp-validation-summary="All"> </div>
+                }
+                <form asp-action="SignUp">
+                    <input class="input" type="text" asp-for="UserName" name="Username" id="Username" placeholder="User Name">
+                    <input class="input" type="text" asp-for="FirstName" name="FirstName" id="FirstName" placeholder="First Name">
+                    <input class="input" type="text" asp-for="LastName" name="LastName" id="LastName" placeholder="Last Name">
+                    <input class="input" type="email" asp-for="Email" name="email" id="email" placeholder="E-mail">
+                    <input class="input" type="password" asp-for="Password" name="password" id="password" placeholder="Password">
+                    <input class="input" type="password" asp-for="ConfirmPassword" name="ConfirmPassword" id="confirmPassword" placeholder="Confirm Password">
+                    <div class="form-check mt-2 ml-2">
+                        <input asp-for="IsAgree" class="form-check-input">
+                        <label asp-for="IsAgree" class="form-check-label">I Agree To the Terms & Condition</label>
+                    </div>
+                    <input class="login-button btn btn-dark mt-3" type="submit" value="Sign Up">
+                </form>
+                <div class="text-center mt-2">
+                    <span>Already have an account? <a asp-action="SignIn" class="text-dark font-weight-bolder">Sign In</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+    h1 {
+        font-size: 2rem;
+    }
+
+    .Logo {
+        width: 65px;
+    }
+
+    .grayscale {
+        filter: grayscale(100%);
+    }
+
+    .sa {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Aligns text to the left of the container */
+        margin-left: 10px; /* Adds some space between the logo and the text */
+    }
+
+    .line-1, .line-2 {
+        margin: 0; /* Removes default margin */
+        font-family: "Trebuchet MS", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .line-1 {
+        margin-bottom: -5px; /* Adjusts space between the two lines */
+    }
+
+    .line-2 {
+        margin-top: 0px; /* Adjusts space between the two lines */
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .registration-container {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .heading {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .form-check-label {
+        margin-left: 8px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    body {
+        margin: 0;
+        overflow: hidden; /* Prevent scrolling */
+    }
+</style>
